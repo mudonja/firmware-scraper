@@ -30,8 +30,8 @@ class FirmwareItem(scrapy.Item):
 
 class FirmwareSpider(scrapy.Spider):
     name = "firmware_spider"
-    #start_urls = ['https://archive.openwrt.org/']
-    start_urls = ['https://archive.openwrt.org/attitude_adjustment/12.09/adm8668/generic/']
+    start_urls = ['https://archive.openwrt.org/']
+    #start_urls = ['https://archive.openwrt.org/attitude_adjustment/12.09/adm8668/generic/']
     custom_settings = {
         'LOG_ENABLED': True,
         'LOG_FILE': "log/logs.txt",
