@@ -38,9 +38,13 @@ class MySpider(CrawlSpider):
         SELECTOR = '.n a ::attr(href)'
         loader = ItemLoader(item=FirmwareItem)
         file_url = response.css(SELECTOR).extract_first()
-        file_url = response.urljoin(file_url)
+        file_url_absolute = response.urljoin(file_url)
+
+
+        item = FirmwareItem()
+        item['url']=response.css(SELECTOR).extract_first()
         yield {
-            'file_url': file_url
+            'file_url': file_url_absolute
         }
 
         # if next_page:
@@ -58,3 +62,5 @@ class MySpider(CrawlSpider):
 class FirmwareItem(scrapy.Item):
     file_urls = scrapy.Field()
     files = scrapy.Field()
+
+
