@@ -126,6 +126,7 @@ class Verifier:
 
 def getKeyRing():
     keyring = 'git://git.openwrt.org/keyring.git'
+    # Command used is bellow
     # gitcmd == git clone git://git.openwrt.org/keyring.git
     gitcmd = subprocess.Popen(['git', 'clone', keyring], cwd=".",
                               stdout=subprocess.PIPE)
@@ -137,6 +138,7 @@ def getKeyRing():
 
 
 def importKeys():
+    # Command used is bellow
     # gpgcmd == gpg --import ./keyring/gpg/*
     gpgcmd = subprocess.Popen(['gpg', '--import', 'keyring/gpg/*'], cwd=".",
                               stdout=subprocess.PIPE, stdin=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -148,7 +150,10 @@ def importKeys():
 
 
 if __name__ == '__main__':
-    target_dir = "./temp"  # Change to the directory containing the files
+    target_dir = "./temp/wr"  # Change to the directory containing the files
+    ### Section bellow is not functional, it keeps breaking for some reason
+    # TODO Fix section bellow
+    ### Commands that need to be executed can be found in the corresponding functions
     ### Download keyring
     #getKeyRing()
     #time.sleep(10)
