@@ -59,7 +59,7 @@ class Checker:
 
     def sum_check_from_file(self):
         if self.chksum_hash == 'md5':
-            md5sums = subprocess.run(['find', '.', '-iname', self.chksum_filename], stdout=subprocess.PIPE)
+            md5sums = subprocess.run(['find', target_dir, '-iname', self.chksum_filename], stdout=subprocess.PIPE)
             a = md5sums.stdout.decode()
             b = a.split("\n")
             if b[-1] == "":
@@ -73,7 +73,7 @@ class Checker:
                 i += 1
             self.check(md5paths)
         elif self.chksum_hash == 'sha256':
-            sha256sums = subprocess.run(['find', '.', '-iname', self.chksum_filename], stdout=subprocess.PIPE)
+            sha256sums = subprocess.run(['find', target_dir, '-iname', self.chksum_filename], stdout=subprocess.PIPE)
             a = sha256sums.stdout.decode()
             b = a.split("\n")
             if b[-1] == "":
@@ -99,7 +99,7 @@ class Verifier:
         self.extension = extension
 
     def verify(self):
-        files = subprocess.run(['find', '.', '-iname', self.filename+'.'+self.extension], stdout=subprocess.PIPE)
+        files = subprocess.run(['find', target_dir, '-iname', self.filename+'.'+self.extension], stdout=subprocess.PIPE)
         a = files.stdout.decode()
         b = a.split("\n")
 
@@ -148,6 +148,7 @@ def importKeys():
 
 
 if __name__ == '__main__':
+    target_dir = "./temp"  # Change to the directory containing the files
     ### Download keyring
     #getKeyRing()
     #time.sleep(10)
